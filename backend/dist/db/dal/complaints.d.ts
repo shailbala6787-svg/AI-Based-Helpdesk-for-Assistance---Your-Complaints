@@ -1,0 +1,114 @@
+export declare const complaintsDAL: {
+    create(data: {
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails?: string;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+    }): Promise<{
+        id: number;
+        createdAt: Date;
+        updatedAt: Date;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+    }>;
+    findById(id: number): Promise<{
+        id: number;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    findByUserId(userId: number): Promise<{
+        id: number;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }[]>;
+    findAll(): Promise<{
+        id: number;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }[]>;
+    update(id: number, data: Partial<{
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string;
+        description: string;
+        ipcSections: string[];
+    }>): Promise<{
+        id: number;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    remove(id: number): Promise<void>;
+    keywordSearch(query: string): Promise<{
+        id: number;
+        userId: number;
+        title: string;
+        complainantName: string;
+        complainantContact: string;
+        incidentDatetime: Date;
+        incidentPlace: string;
+        accusedDetails: string | null;
+        description: string;
+        ipcSections: string[];
+        imageUrl: string;
+        createdAt: Date;
+        updatedAt: Date;
+    }[]>;
+};
+//# sourceMappingURL=complaints.d.ts.map

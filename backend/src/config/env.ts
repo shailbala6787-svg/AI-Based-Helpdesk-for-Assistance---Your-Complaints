@@ -1,7 +1,7 @@
 import 'dotenv/config';
 
 export const config = {
-  port: parseInt(process.env.PORT!, 10),
+  port: parseInt(process.env.PORT || '10000', 10),
   databaseUrl: process.env.DATABASE_URL!,
   supabaseUrl: process.env.SUPABASE_URL!,
   supabaseServiceKey: process.env.SUPABASE_SERVICE_KEY!,

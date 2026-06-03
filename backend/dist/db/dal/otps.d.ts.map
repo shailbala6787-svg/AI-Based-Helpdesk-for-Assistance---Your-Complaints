@@ -1,0 +1,1 @@
+{"version":3,"file":"otps.d.ts","sourceRoot":"","sources":["../../../src/db/dal/otps.ts"],"names":[],"mappings":"AAGA,OAAO,KAAK,EAAE,UAAU,EAAE,MAAM,0BAA0B,CAAC;AAE3D,eAAO,MAAM,OAAO;iBACC;QACjB,MAAM,EAAE,MAAM,CAAC;QACf,OAAO,EAAE,MAAM,CAAC;QAChB,OAAO,EAAE,UAAU,CAAC;QACpB,SAAS,EAAE,IAAI,CAAC;KACjB;;;;;;;;uCAKwC,MAAM,WAAW,UAAU;;;;;;;;mCAU/B,MAAM,WAAW,UAAU;CAGjE,CAAC"}
