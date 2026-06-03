@@ -11,16 +11,30 @@ function generateOtp(): string {
 
 export async function signupService(data: SignupDto) {
   const existing = await usersDAL.findByEmail(data.email);
-  if (existing) {
+
+  let user;
+
+  if (existing && existing.verified) {
     throw { status: 409, message: 'Email already registered' };
   }
 
-  const passwordHash = await hashValue(data.password);
-  const user = await usersDAL.create({
-    name: data.name,
-    email: data.email,
-    passwordHash,
-  });
+  if (existing && !existing.verified) {
+    // User exists but never verified — update password and resend OTP
+    const passwordHash = await hashValue(data.password);
+    await usersDAL.updatePassword(existing.id, passwordHash);
+    user = { ...existing, passwordHash };
+
+    // Clean up old signup OTPs
+    await otpsDAL.deleteByUserAndPurpose(existing.id, OTP_PURPOSES.SIGNUP);
+  } else {
+    // Brand new user
+    const passwordHash = await hashValue(data.password);
+    user = await usersDAL.create({
+      name: data.name,
+      email: data.email,
+      passwordHash,
+    });
+  }
 
   const otp = generateOtp();
   const otpHash = await hashValue(otp);
@@ -33,7 +47,12 @@ export async function signupService(data: SignupDto) {
     expiresAt,
   });
 
-  await sendOtpEmail(data.email, otp, OTP_PURPOSES.SIGNUP);
+  try {
+    await sendOtpEmail(data.email, otp, OTP_PURPOSES.SIGNUP);
+  } catch (emailErr) {
+    console.error('Failed to send OTP email:', emailErr);
+    // Don't fail signup — user can use "Resend OTP" on the verify page
+  }
 
   return { userId: user.id, email: user.email };
 }

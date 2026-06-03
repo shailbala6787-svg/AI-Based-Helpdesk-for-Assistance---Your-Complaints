@@ -9,17 +9,17 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'md', disabled, ...props }, ref) => {
     const base =
-      'inline-flex items-center justify-center font-semibold tracking-wide cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-primary)';
+      'inline-flex items-center justify-center font-semibold tracking-wide cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500';
 
     const variants: Record<string, string> = {
       default:
-        'bg-gradient-to-b from-(--color-primary) to-(--color-primary-hover) text-(--color-primary-fg) shadow-[0_2px_8px_rgba(99,102,241,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_4px_16px_rgba(99,102,241,0.45),inset_0_1px_0_rgba(255,255,255,0.2)] hover:brightness-110',
+        'bg-gradient-to-b from-indigo-500 to-indigo-600 text-white shadow-[0_2px_8px_rgba(99,102,241,0.35),inset_0_1px_0_rgba(255,255,255,0.15)] hover:shadow-[0_4px_16px_rgba(99,102,241,0.45),inset_0_1px_0_rgba(255,255,255,0.2)] hover:brightness-110',
       outline:
-        'border-2 border-(--color-border-input) text-(--color-text) hover:border-(--color-primary) hover:text-(--color-primary) hover:bg-(--color-bg-hover)',
+        'border-2 border-black/10 dark:border-white/10 hover:border-indigo-500 hover:text-indigo-500 hover:bg-indigo-50 dark:hover:bg-indigo-500/10',
       ghost:
-        'text-(--color-text-muted) hover:bg-(--color-bg-hover) hover:text-(--color-text)',
+        'hover:bg-black/5 dark:hover:bg-white/5',
       destructive:
-        'bg-gradient-to-b from-(--color-destructive) to-(--color-destructive-hover) text-white shadow-[0_2px_8px_rgba(239,68,68,0.3)] hover:shadow-[0_4px_16px_rgba(239,68,68,0.4)] hover:brightness-110',
+        'bg-gradient-to-b from-red-500 to-red-600 text-white shadow-[0_2px_8px_rgba(239,68,68,0.3)] hover:shadow-[0_4px_16px_rgba(239,68,68,0.4)] hover:brightness-110',
     };
 
     const sizes: Record<string, string> = {
@@ -33,6 +33,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         disabled={disabled}
         className={cn(base, variants[variant], sizes[size], className)}
+        style={{
+          color: variant === 'ghost' ? 'var(--color-text-muted)' : undefined,
+        }}
         {...props}
       />
     );

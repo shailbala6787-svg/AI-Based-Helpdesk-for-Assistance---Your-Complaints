@@ -11,7 +11,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="flex flex-col gap-2">
         {label && (
-          <label htmlFor={id} className="text-[13px] font-semibold tracking-wide uppercase text-(--color-text-muted)">
+          <label
+            htmlFor={id}
+            className="text-[13px] font-semibold tracking-wide uppercase"
+            style={{ color: 'var(--color-text-muted)' }}
+          >
             {label}
           </label>
         )}
@@ -19,19 +23,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           className={cn(
-            'h-12 w-full rounded-xl border bg-(--color-bg-input) px-4 text-sm text-(--color-text)',
-            'placeholder:text-(--color-text-muted)/60',
+            'h-12 w-full rounded-xl border px-4 text-sm',
+            'placeholder:opacity-50',
             'transition-all duration-200',
-            'focus:outline-none focus:ring-2 focus:ring-(--color-primary)/40 focus:border-(--color-primary) focus:bg-white dark:focus:bg-(--color-bg-input)',
-            'hover:border-(--color-primary)/30',
+            'focus:outline-none focus:ring-2 focus:ring-offset-0',
             error
-              ? 'border-(--color-destructive) focus:ring-(--color-destructive)/40'
-              : 'border-(--color-border-input)',
+              ? 'border-red-400 focus:ring-red-400/40'
+              : 'border-black/10 dark:border-white/10 focus:ring-indigo-500/40 focus:border-indigo-500 hover:border-indigo-400/30',
             className,
           )}
+          style={{
+            backgroundColor: 'var(--color-bg-input)',
+            color: 'var(--color-text)',
+          }}
           {...props}
         />
-        {error && <p className="text-xs text-(--color-destructive)">{error}</p>}
+        {error && <p className="text-xs text-red-500">{error}</p>}
       </div>
     );
   },

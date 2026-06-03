@@ -29,52 +29,90 @@ export default function Sidebar() {
   return (
     <aside className="fixed left-0 top-0 h-screen w-[280px] sidebar-glass flex flex-col z-40">
       {/* Logo */}
-      <div className="h-20 flex items-center px-7 border-b border-(--color-border) gap-3">
-        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white flex items-center justify-center shadow-lg shadow-indigo-500/25">
-          <Shield size={20} />
-        </div>
+      <div
+        style={{
+          height: '80px',
+          display: 'flex',
+          alignItems: 'center',
+          padding: '0 28px',
+          gap: '12px',
+          borderBottom: '1px solid var(--color-border)',
+        }}
+      >
+        <img
+          src="/logo.png"
+          alt="UP Police Logo"
+          style={{ width: '44px', height: '44px', objectFit: 'contain', flexShrink: 0 }}
+        />
         <div>
-          <span className="text-lg font-bold tracking-tight text-(--color-text)">ABHAY</span>
-          <p className="text-[10px] font-medium text-(--color-text-muted) uppercase tracking-widest -mt-0.5">Helpdesk</p>
+          <span className="text-lg font-bold tracking-tight" style={{ color: 'var(--color-text)' }}>
+            ABHAY
+          </span>
+          <p
+            className="text-[10px] font-medium uppercase tracking-widest"
+            style={{ color: 'var(--color-text-muted)', marginTop: '-2px' }}
+          >
+            UP Police Helpdesk
+          </p>
         </div>
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 py-6 px-4 flex flex-col gap-1 overflow-y-auto">
-        <p className="text-[10px] font-bold text-(--color-text-muted) uppercase tracking-widest px-3 mb-3">Menu</p>
+      <nav style={{ flex: 1, padding: '24px 16px', display: 'flex', flexDirection: 'column', gap: '4px', overflowY: 'auto' }}>
+        <p
+          className="text-[10px] font-bold uppercase tracking-widest"
+          style={{ color: 'var(--color-text-muted)', padding: '0 12px', marginBottom: '8px' }}
+        >
+          Menu
+        </p>
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             end={item.to === '/'}
             className={({ isActive }) =>
-              `group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+              `group flex items-center gap-3 text-sm font-medium transition-all duration-200 ${
                 isActive
-                  ? 'bg-gradient-to-r from-(--color-primary)/10 to-(--color-accent)/10 text-(--color-primary) shadow-sm'
-                  : 'text-(--color-text-muted) hover:bg-(--color-bg-hover) hover:text-(--color-text)'
+                  ? 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                  : 'hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
               }`
             }
+            style={({ isActive }) => ({
+              padding: '10px 12px',
+              borderRadius: '12px',
+              color: isActive ? undefined : 'var(--color-text-muted)',
+            })}
           >
-            <item.icon size={18} className="transition-transform group-hover:scale-110" />
+            <item.icon size={18} className="transition-transform group-hover:scale-110 shrink-0" />
             {item.label}
           </NavLink>
         ))}
 
         {user?.role === ROLES.ADMIN && (
           <>
-            <div className="h-px bg-(--color-border) my-3 mx-3"></div>
-            <p className="text-[10px] font-bold text-(--color-text-muted) uppercase tracking-widest px-3 mb-3">Admin</p>
+            <div style={{ height: '1px', backgroundColor: 'var(--color-border)', margin: '8px 12px' }} />
+            <p
+              className="text-[10px] font-bold uppercase tracking-widest"
+              style={{ color: 'var(--color-text-muted)', padding: '0 12px', marginBottom: '8px' }}
+            >
+              Admin
+            </p>
             <NavLink
               to="/admin"
               className={({ isActive }) =>
-                `group flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                `group flex items-center gap-3 text-sm font-medium transition-all duration-200 ${
                   isActive
-                    ? 'bg-gradient-to-r from-(--color-primary)/10 to-(--color-accent)/10 text-(--color-primary) shadow-sm'
-                    : 'text-(--color-text-muted) hover:bg-(--color-bg-hover) hover:text-(--color-text)'
+                    ? 'bg-gradient-to-r from-indigo-500/10 to-purple-500/10 text-indigo-600 dark:text-indigo-400 shadow-sm'
+                    : 'hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
                 }`
               }
+              style={({ isActive }) => ({
+                padding: '10px 12px',
+                borderRadius: '12px',
+                color: isActive ? undefined : 'var(--color-text-muted)',
+              })}
             >
-              <Shield size={18} className="transition-transform group-hover:scale-110" />
+              <Shield size={18} className="transition-transform group-hover:scale-110 shrink-0" />
               Admin Panel
             </NavLink>
           </>
@@ -82,19 +120,54 @@ export default function Sidebar() {
       </nav>
 
       {/* User section */}
-      <div className="border-t border-(--color-border) p-4">
-        <div className="flex items-center gap-3 px-3 py-3 rounded-xl bg-(--color-bg-muted)">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-sm font-bold shadow-md shadow-indigo-500/20">
+      <div style={{ padding: '16px', borderTop: '1px solid var(--color-border)' }}>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '12px',
+            borderRadius: '12px',
+            backgroundColor: 'var(--color-bg-muted)',
+          }}
+        >
+          <div
+            className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white text-sm font-bold shadow-md"
+            style={{
+              width: '40px',
+              height: '40px',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
             {user?.name?.charAt(0).toUpperCase() || 'U'}
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-(--color-text) truncate">{user?.name}</p>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p className="text-sm font-semibold truncate" style={{ color: 'var(--color-text)' }}>
+              {user?.name}
+            </p>
             <RoleChip role={user?.role || 'USER'} />
           </div>
         </div>
         <button
           onClick={handleLogout}
-          className="flex items-center gap-3 w-full px-3 py-2.5 rounded-xl text-sm font-medium text-(--color-text-muted) hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-(--color-destructive) transition-all duration-200 cursor-pointer mt-2"
+          className="flex items-center gap-3 w-full hover:bg-red-50 dark:hover:bg-red-500/10 hover:text-red-500"
+          style={{
+            padding: '10px 12px',
+            borderRadius: '12px',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: 'var(--color-text-muted)',
+            cursor: 'pointer',
+            marginTop: '8px',
+            width: '100%',
+            transition: 'all 0.2s',
+            background: 'none',
+            border: 'none',
+          }}
         >
           <LogOut size={18} />
           Sign out

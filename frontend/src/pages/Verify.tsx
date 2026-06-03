@@ -50,16 +50,32 @@ export default function Verify() {
       <div className="orb orb-2"></div>
       <div className="orb orb-3"></div>
 
-      <div className="w-full max-w-md relative z-10">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-xl mb-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      <div className="w-full max-w-md relative z-10 fade-in">
+        <div className="text-center" style={{ marginBottom: '40px' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '96px',
+              height: '96px',
+              borderRadius: '24px',
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(20px)',
+              marginBottom: '20px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+              border: '1px solid rgba(255,255,255,0.25)',
+            }}
+          >
+            <img src="/logo.png" alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">Verify Email</h1>
-          <p className="text-white/70 mt-2 text-base">Enter the 6-digit code sent to your inbox</p>
+          <p className="text-white/70 text-base" style={{ marginTop: '8px' }}>
+            Enter the 6-digit code sent to your inbox
+          </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="glass-card rounded-3xl p-8 space-y-6">
+        <form onSubmit={handleSubmit} className="glass-card rounded-3xl" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
           <Input
             id="verify-email"
             label="Email Address"
@@ -81,7 +97,7 @@ export default function Verify() {
             required
           />
 
-          <Button type="submit" disabled={loading} className="w-full h-13 text-base rounded-2xl">
+          <Button type="submit" disabled={loading} className="w-full" size="lg">
             {loading ? 'Verifying...' : 'Verify Email'}
           </Button>
 
@@ -89,7 +105,8 @@ export default function Verify() {
             type="button"
             onClick={handleResend}
             disabled={resending}
-            className="w-full text-center text-sm text-(--color-text-muted) hover:text-(--color-primary) transition-colors cursor-pointer disabled:opacity-50 font-medium"
+            className="w-full text-center text-sm font-medium hover:text-indigo-500 transition-colors cursor-pointer disabled:opacity-50"
+            style={{ color: 'var(--color-text-muted)', background: 'none', border: 'none' }}
           >
             {resending ? 'Sending...' : "Didn't receive a code? Resend"}
           </button>

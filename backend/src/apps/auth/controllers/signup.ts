@@ -17,6 +17,7 @@ export async function signupController(req: Request, res: Response, next: NextFu
     if (err.status) {
       fail(res, err.message, err.status);
     } else {
+      console.error('Signup error:', err);
       next(err);
     }
   }

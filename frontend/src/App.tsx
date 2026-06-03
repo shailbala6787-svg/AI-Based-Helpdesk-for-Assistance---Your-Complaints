@@ -18,10 +18,13 @@ function ProtectedRoute() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-(--color-bg)">
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ backgroundColor: 'var(--color-bg)' }}
+      >
         <div className="flex flex-col items-center gap-4">
-          <div className="w-10 h-10 border-3 border-(--color-primary)/20 border-t-(--color-primary) rounded-full animate-spin"></div>
-          <p className="text-sm text-(--color-text-muted) font-medium">Loading your dashboard...</p>
+          <div className="w-10 h-10 border-3 border-indigo-200 border-t-indigo-500 rounded-full animate-spin"></div>
+          <p className="text-sm font-medium" style={{ color: 'var(--color-text-muted)' }}>Loading your dashboard...</p>
         </div>
       </div>
     );
@@ -32,9 +35,9 @@ function ProtectedRoute() {
   }
 
   return (
-    <div className="min-h-screen bg-(--color-bg)">
+    <div className="min-h-screen" style={{ backgroundColor: 'var(--color-bg)' }}>
       <Sidebar />
-      <main className="ml-[280px] p-10">
+      <main style={{ marginLeft: '280px', padding: '40px' }}>
         <Outlet />
       </main>
     </div>

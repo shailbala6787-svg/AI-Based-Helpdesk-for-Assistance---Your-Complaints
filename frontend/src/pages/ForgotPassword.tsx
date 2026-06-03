@@ -48,21 +48,35 @@ export default function ForgotPassword() {
       <div className="orb orb-2"></div>
       <div className="orb orb-3"></div>
 
-      <div className="w-full max-w-md relative z-10">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-white/20 backdrop-blur-xl mb-5 shadow-[0_8px_32px_rgba(0,0,0,0.12)]">
-            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      <div className="w-full max-w-md relative z-10 fade-in">
+        <div className="text-center" style={{ marginBottom: '40px' }}>
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '96px',
+              height: '96px',
+              borderRadius: '24px',
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(20px)',
+              marginBottom: '20px',
+              boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+              border: '1px solid rgba(255,255,255,0.25)',
+            }}
+          >
+            <img src="/logo.png" alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">
             {step === 'email' ? 'Reset Password' : 'New Password'}
           </h1>
-          <p className="text-white/70 mt-2 text-base">
+          <p className="text-white/70 text-base" style={{ marginTop: '8px' }}>
             {step === 'email' ? "We'll send a reset code to your email" : 'Enter your code and new password'}
           </p>
         </div>
 
         {step === 'email' ? (
-          <form onSubmit={handleSendOtp} className="glass-card rounded-3xl p-8 space-y-6">
+          <form onSubmit={handleSendOtp} className="glass-card rounded-3xl" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <Input
               id="forgot-email"
               label="Email Address"
@@ -72,17 +86,17 @@ export default function ForgotPassword() {
               placeholder="you@example.com"
               required
             />
-            <Button type="submit" disabled={loading} className="w-full h-13 text-base rounded-2xl">
+            <Button type="submit" disabled={loading} className="w-full" size="lg">
               {loading ? 'Sending...' : 'Send Reset Code'}
             </Button>
             <p className="text-center text-sm">
-              <Link to="/login" className="text-(--color-primary) font-semibold hover:underline underline-offset-4">
+              <Link to="/login" className="text-indigo-500 font-semibold hover:underline underline-offset-4">
                 ← Back to login
               </Link>
             </p>
           </form>
         ) : (
-          <form onSubmit={handleReset} className="glass-card rounded-3xl p-8 space-y-6">
+          <form onSubmit={handleReset} className="glass-card rounded-3xl" style={{ padding: '32px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <Input
               id="reset-otp"
               label="Reset Code"
@@ -104,7 +118,7 @@ export default function ForgotPassword() {
               minLength={8}
               required
             />
-            <Button type="submit" disabled={loading} className="w-full h-13 text-base rounded-2xl">
+            <Button type="submit" disabled={loading} className="w-full" size="lg">
               {loading ? 'Resetting...' : 'Reset Password'}
             </Button>
           </form>

@@ -47,23 +47,38 @@ function ToastItem({ toast, onRemove }: { toast: Toast; onRemove: (id: number) =
   }, [toast.id, onRemove]);
 
   const icons = {
-    success: <CheckCircle size={16} className="text-(--color-success) shrink-0" />,
-    error: <AlertCircle size={16} className="text-(--color-destructive) shrink-0" />,
-    info: <Info size={16} className="text-(--color-text-muted) shrink-0" />,
+    success: <CheckCircle size={16} className="text-emerald-500 shrink-0" />,
+    error: <AlertCircle size={16} className="text-red-500 shrink-0" />,
+    info: <Info size={16} className="shrink-0" style={{ color: 'var(--color-text-muted)' }} />,
+  };
+
+  const borderColors = {
+    success: 'border-l-emerald-500',
+    error: 'border-l-red-500',
+    info: 'border-l-indigo-500',
   };
 
   return (
     <div
       className={cn(
-        'flex items-start gap-3 rounded-(--radius-lg) border border-(--color-border) bg-(--color-bg-card) px-4 py-3 shadow-lg animate-in slide-in-from-right',
+        'flex items-start gap-3 rounded-xl border border-l-4 px-4 py-3 shadow-lg animate-in slide-in-from-right',
         'transition-all duration-300',
+        borderColors[toast.type],
       )}
+      style={{
+        backgroundColor: 'var(--color-bg-card)',
+        borderColor: undefined,
+        borderRightColor: 'var(--color-border)',
+        borderTopColor: 'var(--color-border)',
+        borderBottomColor: 'var(--color-border)',
+      }}
     >
       {icons[toast.type]}
-      <p className="text-sm text-(--color-text) flex-1">{toast.message}</p>
+      <p className="text-sm flex-1" style={{ color: 'var(--color-text)' }}>{toast.message}</p>
       <button
         onClick={() => onRemove(toast.id)}
-        className="text-(--color-text-muted) hover:text-(--color-text) transition-colors cursor-pointer shrink-0"
+        className="hover:opacity-80 transition-colors cursor-pointer shrink-0"
+        style={{ color: 'var(--color-text-muted)' }}
       >
         <X size={14} />
       </button>

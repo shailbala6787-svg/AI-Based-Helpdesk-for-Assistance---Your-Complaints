@@ -50,48 +50,48 @@ export default function Complaints() {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '32px' }}>
         <div>
-          <h1 className="text-2xl font-bold text-(--color-text) tracking-tight">Complaints</h1>
-          <p className="text-sm text-(--color-text-muted) mt-1">
-            <span className="font-semibold text-(--color-primary)">{complaints.length}</span> complaint{complaints.length !== 1 ? 's' : ''} total
+          <h1 className="text-2xl font-bold tracking-tight" style={{ color: 'var(--color-text)' }}>Complaints</h1>
+          <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>
+            <span className="font-semibold text-indigo-500">{complaints.length}</span> complaint{complaints.length !== 1 ? 's' : ''} total
           </p>
         </div>
         <button
           onClick={fetchComplaints}
-          className="text-xs font-semibold text-(--color-primary) hover:text-(--color-primary-hover) hover:underline underline-offset-4 transition-all cursor-pointer"
+          className="text-xs font-semibold text-indigo-500 hover:text-indigo-600 hover:underline underline-offset-4 cursor-pointer"
         >
           Refresh
         </button>
       </div>
 
-      <div className="mb-6">
+      <div style={{ marginBottom: '24px' }}>
         <SearchBox onSearch={handleSearch} loading={searching} />
       </div>
 
       {loading ? (
-        <div className="text-center py-20">
-          <div className="w-8 h-8 border-3 border-(--color-primary)/20 border-t-(--color-primary) rounded-full animate-spin mx-auto mb-3"></div>
-          <p className="text-sm text-(--color-text-muted)">Loading complaints...</p>
+        <div style={{ textAlign: 'center', padding: '80px 0' }}>
+          <div className="w-8 h-8 border-3 border-indigo-200 border-t-indigo-500 rounded-full animate-spin mx-auto" style={{ marginBottom: '12px' }}></div>
+          <p className="text-sm" style={{ color: 'var(--color-text-muted)' }}>Loading complaints...</p>
         </div>
       ) : complaints.length === 0 ? (
-        <div className="text-center py-20 glass-card shadow-premium rounded-3xl">
-          <FileText size={48} className="text-(--color-text-muted)/30 mx-auto mb-4" />
-          <p className="text-lg font-semibold text-(--color-text)">No complaints found</p>
-          <p className="text-sm text-(--color-text-muted) mt-1">File a complaint from the Home page to get started</p>
+        <div className="glass-card shadow-premium" style={{ textAlign: 'center', padding: '80px 32px', borderRadius: '24px' }}>
+          <FileText size={48} className="mx-auto" style={{ color: 'var(--color-text-muted)', opacity: 0.3, marginBottom: '16px' }} />
+          <p className="text-lg font-semibold" style={{ color: 'var(--color-text)' }}>No complaints found</p>
+          <p className="text-sm mt-1" style={{ color: 'var(--color-text-muted)' }}>File a complaint from the Home page to get started</p>
         </div>
       ) : (
-        <div className="glass-card shadow-premium rounded-3xl overflow-hidden">
-          <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+        <div className="glass-card shadow-premium" style={{ borderRadius: '24px', overflow: 'hidden' }}>
+          <div style={{ overflowX: 'auto' }}>
+            <table style={{ width: '100%', fontSize: '14px', borderCollapse: 'collapse' }}>
               <thead>
-                <tr className="border-b border-(--color-border)">
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">ID</th>
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">Title</th>
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">Complainant</th>
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">Place</th>
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">IPC</th>
-                  <th className="text-left px-5 py-4 font-bold text-(--color-text-muted) text-[10px] uppercase tracking-widest">Date</th>
+                <tr style={{ borderBottom: '1px solid var(--color-border)' }}>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>ID</th>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>Title</th>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>Complainant</th>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>Place</th>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>IPC</th>
+                  <th style={{ textAlign: 'left', padding: '16px 20px', fontSize: '10px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)' }}>Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -99,28 +99,30 @@ export default function Complaints() {
                   <tr
                     key={c.id}
                     onClick={() => navigate(`/complaints/${c.id}`)}
-                    className="border-b border-(--color-border) last:border-0 hover:bg-(--color-bg-hover) cursor-pointer transition-all duration-200 group"
+                    style={{ borderBottom: '1px solid var(--color-border)', cursor: 'pointer', transition: 'background-color 0.2s' }}
+                    className="hover:bg-indigo-50/50 dark:hover:bg-indigo-500/5"
                   >
-                    <td className="px-5 py-4 text-(--color-text-muted) font-mono text-xs font-bold">#{c.id}</td>
-                    <td className="px-5 py-4 font-semibold text-(--color-text) group-hover:text-(--color-primary) transition-colors">{c.title}</td>
-                    <td className="px-5 py-4 text-(--color-text)">{c.complainantName}</td>
-                    <td className="px-5 py-4 text-(--color-text-muted)">{c.incidentPlace}</td>
-                    <td className="px-5 py-4">
-                      <div className="flex gap-1.5 flex-wrap">
+                    <td style={{ padding: '16px 20px', fontFamily: 'monospace', fontSize: '12px', fontWeight: 700, color: 'var(--color-text-muted)' }}>#{c.id}</td>
+                    <td style={{ padding: '16px 20px', fontWeight: 600, color: 'var(--color-text)' }}>{c.title}</td>
+                    <td style={{ padding: '16px 20px', color: 'var(--color-text)' }}>{c.complainantName}</td>
+                    <td style={{ padding: '16px 20px', color: 'var(--color-text-muted)' }}>{c.incidentPlace}</td>
+                    <td style={{ padding: '16px 20px' }}>
+                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                         {c.ipcSections.slice(0, 3).map((s) => (
                           <span
                             key={s}
-                            className="inline-block px-2 py-0.5 rounded-md text-[10px] font-bold bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20"
+                            className="bg-indigo-50 dark:bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-500/20"
+                            style={{ display: 'inline-block', padding: '2px 8px', borderRadius: '6px', fontSize: '10px', fontWeight: 700 }}
                           >
                             §{s}
                           </span>
                         ))}
                         {c.ipcSections.length > 3 && (
-                          <span className="text-[10px] text-(--color-text-muted) font-medium">+{c.ipcSections.length - 3}</span>
+                          <span style={{ fontSize: '10px', color: 'var(--color-text-muted)', fontWeight: 500 }}>+{c.ipcSections.length - 3}</span>
                         )}
                       </div>
                     </td>
-                    <td className="px-5 py-4 text-(--color-text-muted) text-xs font-medium">{formatDate(c.createdAt)}</td>
+                    <td style={{ padding: '16px 20px', fontSize: '12px', fontWeight: 500, color: 'var(--color-text-muted)' }}>{formatDate(c.createdAt)}</td>
                   </tr>
                 ))}
               </tbody>
