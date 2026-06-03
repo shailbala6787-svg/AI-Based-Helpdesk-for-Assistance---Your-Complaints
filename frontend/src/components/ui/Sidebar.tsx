@@ -4,6 +4,7 @@ import { useAuth } from '../../context/auth';
 import { logout as logoutApi } from '../../APIs/auth';
 import { ROLES } from '../../constants/roles';
 import RoleChip from './RoleChip';
+import logoImg from '../../assets/logo.png';
 
 const navItems = [
   { to: '/', label: 'Home', icon: Home },
@@ -40,7 +41,7 @@ export default function Sidebar() {
         }}
       >
         <img
-          src="/logo.png"
+          src={logoImg}
           alt="UP Police Logo"
           style={{ width: '44px', height: '44px', objectFit: 'contain', flexShrink: 0 }}
         />

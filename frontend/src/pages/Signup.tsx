@@ -4,6 +4,7 @@ import { signup as signupApi } from '../APIs/auth';
 import { useToast } from '../components/ui/Toast';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
+import logoImg from '../assets/logo.png';
 
 export default function Signup() {
   const [name, setName] = useState('');
@@ -50,7 +51,7 @@ export default function Signup() {
               border: '1px solid rgba(255,255,255,0.25)',
             }}
           >
-            <img src="/logo.png" alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
+            <img src={logoImg} alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">Create Account</h1>
           <p className="text-white/70 text-base" style={{ marginTop: '8px' }}>

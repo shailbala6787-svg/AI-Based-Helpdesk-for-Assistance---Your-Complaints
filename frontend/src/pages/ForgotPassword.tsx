@@ -4,6 +4,7 @@ import { forgotPassword as forgotApi, resetPassword as resetApi } from '../APIs/
 import { useToast } from '../components/ui/Toast';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
+import logoImg from '../assets/logo.png';
 
 export default function ForgotPassword() {
   const [step, setStep] = useState<'email' | 'reset'>('email');
@@ -65,7 +66,7 @@ export default function ForgotPassword() {
               border: '1px solid rgba(255,255,255,0.25)',
             }}
           >
-            <img src="/logo.png" alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
+            <img src={logoImg} alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">
             {step === 'email' ? 'Reset Password' : 'New Password'}

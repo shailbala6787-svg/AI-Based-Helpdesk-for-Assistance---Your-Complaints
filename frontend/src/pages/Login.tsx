@@ -5,6 +5,7 @@ import { useAuth } from '../context/auth';
 import { useToast } from '../components/ui/Toast';
 import Input from '../components/form/Input';
 import Button from '../components/form/Button';
+import logoImg from '../assets/logo.png';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -52,7 +53,7 @@ export default function Login() {
               border: '1px solid rgba(255,255,255,0.25)',
             }}
           >
-            <img src="/logo.png" alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
+            <img src={logoImg} alt="UP Police" style={{ width: '68px', height: '68px', objectFit: 'contain' }} />
           </div>
           <h1 className="text-4xl font-bold text-white tracking-tight">Welcome Back</h1>
           <p className="text-white/70 text-base" style={{ marginTop: '8px' }}>
