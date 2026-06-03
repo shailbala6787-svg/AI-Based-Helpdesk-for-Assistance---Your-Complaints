@@ -23,7 +23,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:6001',
   'http://127.0.0.1:6001',
-  '<DOMAIN_PLACEHOLDER>',
+  'https://shailbala6787-svg.github.io',
 ];
 
 app.use(cors({
