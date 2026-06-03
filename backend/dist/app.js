@@ -19,6 +19,7 @@ const allowedOrigins = [
     'http://localhost:6001',
     'http://127.0.0.1:6001',
     'https://shailbala6787-svg.github.io',
+    'https://abhay.shailbala-uppolice.shop',
 ];
 app.use(cors({
     origin: (origin, callback) => {
