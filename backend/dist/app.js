@@ -1,4 +1,12 @@
 import express from 'express';
+process.on('uncaughtException', (err) => {
+    console.error('UNCAUGHT EXCEPTION:', err);
+    process.exit(1);
+});
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('UNHANDLED REJECTION:', reason);
+    process.exit(1);
+});
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { config } from './config/env.js';
@@ -10,7 +18,7 @@ const app = express();
 const allowedOrigins = [
     'http://localhost:6001',
     'http://127.0.0.1:6001',
-    '<DOMAIN_PLACEHOLDER>',
+    'https://shailbala6787-svg.github.io',
 ];
 app.use(cors({
     origin: (origin, callback) => {
@@ -29,7 +37,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/complaints', complaintsRouter);
 app.use('/api/admin', adminRouter);
 app.use(errorHandler);
-app.listen(config.port, () => {
+app.listen(config.port, '0.0.0.0', () => {
     console.log(`ABHAY backend running on port ${config.port}`);
 });
 export default app;
