@@ -13,6 +13,6 @@ export default defineConfig({
   server: {
     port: 6001,
   },
-  // GitHub Pages ke liye base path — repo name ke saath match karna chahiye
-  base: '/AI-Based-Helpdesk-for-Assistance---Your-Complaints/',
+  // Custom domain (abhay.shailbala-uppolice.shop) mapping ke liye base path '/' hona chahiye
+  base: '/',
 });
