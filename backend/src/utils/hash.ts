@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { BCRYPT_COST } from '../constants/enums.js';
 
 export async function hashValue(plain: string): Promise<string> {
